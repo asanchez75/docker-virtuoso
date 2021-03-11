@@ -1,14 +1,14 @@
 FROM ubuntu:18.04
 
-# Set Virtuoso commit SHA to Virtuoso 7.2.5.2 release (16/08/2018)
-ENV VIRTUOSO_COMMIT 17c4ba1d5825822d8380ef8d9f978e2d57f4768f
+# Set Virtuoso commit SHA to Virtuoso 7.x release (02/08/2021)
+ENV VIRTUOSO_COMMIT 3ff1d4b3de3977337baf909c264968b9f70b7d2c
 
 # Build virtuoso from source and clean up afterwards
 RUN apt-get update \
         && apt-get install -y build-essential autotools-dev autoconf automake unzip wget net-tools libtool flex bison gperf gawk m4 libssl-dev libreadline-dev openssl crudini \
         # Workaround for #663
         && apt-get install -y libssl1.0-dev \
-        && wget https://github.com/openlink/virtuoso-opensource/archive/${VIRTUOSO_COMMIT}.zip \
+        && wget https://github.com/asanchez75/virtuoso-opensource/archive/${VIRTUOSO_COMMIT}.zip \
         && unzip ${VIRTUOSO_COMMIT}.zip \
         && rm ${VIRTUOSO_COMMIT}.zip \
         && cd virtuoso-opensource-${VIRTUOSO_COMMIT} \
